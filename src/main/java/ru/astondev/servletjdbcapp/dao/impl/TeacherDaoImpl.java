@@ -4,7 +4,6 @@ import ru.astondev.servletjdbcapp.dao.TeacherDao;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
 import ru.astondev.servletjdbcapp.dbutils.TeacherSqlQueries;
 import ru.astondev.servletjdbcapp.exception.SqlProcessingException;
-import ru.astondev.servletjdbcapp.exception.TeacherDeletingException;
 import ru.astondev.servletjdbcapp.model.Student;
 import ru.astondev.servletjdbcapp.model.Teacher;
 
@@ -100,13 +99,27 @@ public class TeacherDaoImpl implements TeacherDao {
     }
 
     @Override
-    public void deleteById(int id) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(TeacherSqlQueries.DELETE_TEACHER_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new TeacherDeletingException();
+    public void deleteById(int id) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement untieTeachers = connection.prepareStatement(TeacherSqlQueries.UNTIE_STUDENTS_FROM_TEACHER);
+            untieTeachers.setInt(1, id);
+            untieTeachers.executeUpdate();
+            PreparedStatement deleteStudent = connection.prepareStatement(TeacherSqlQueries.DELETE_TEACHER_BY_ID);
+            deleteStudent.setInt(1, id);
+            deleteStudent.executeUpdate();
+            connection.commit();
+
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    throw new SqlProcessingException(e);
+                }
+            }
         }
     }
 

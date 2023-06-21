@@ -11,4 +11,5 @@ public class TeacherSqlQueries {
     public static final String DELETE_TEACHER_BY_ID = "DELETE FROM teacher where id = ?;";
     public static final String SET_STUDENT_FOR_TEACHER = "insert into student_teacher_binding (teacher_id, student_id) values (?, ?);";
     public static final String DELETE_ALL = "delete from teacher;";
+    public static final String UNTIE_STUDENTS_FROM_TEACHER = "DELETE FROM student_teacher_binding WHERE teacher_id = ?";
 }

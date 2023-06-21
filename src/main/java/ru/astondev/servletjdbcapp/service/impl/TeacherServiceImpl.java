@@ -6,6 +6,7 @@ import ru.astondev.servletjdbcapp.exception.TeacherNotFoundException;
 import ru.astondev.servletjdbcapp.model.Teacher;
 import ru.astondev.servletjdbcapp.service.TeacherService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class TeacherServiceImpl implements TeacherService {
@@ -35,7 +36,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id) throws SQLException {
         teacherDao.deleteById(id);
     }
 

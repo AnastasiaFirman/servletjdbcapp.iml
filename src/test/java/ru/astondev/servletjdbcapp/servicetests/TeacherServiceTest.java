@@ -10,6 +10,7 @@ import ru.astondev.servletjdbcapp.service.impl.StudentServiceImpl;
 import ru.astondev.servletjdbcapp.service.impl.TeacherServiceImpl;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class TeacherServiceTest {
     }
 
     @Test
-    void deleteByIdTest() {
+    void deleteByIdTest() throws SQLException {
         Teacher teacher = teacherService.save(new Teacher("Почтальон", "Печкин"));
         teacherService.deleteById(teacher.getId());
         Assertions.assertEquals(0, teacherService.findAll().size());

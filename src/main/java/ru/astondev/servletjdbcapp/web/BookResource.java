@@ -39,7 +39,6 @@ public class BookResource {
 
     @PUT
     @Path("/{studentId}/{bookId}")
-    @Consumes("application/json")
     public void setStudentForBook(@PathParam("studentId") int studentId, @PathParam("bookId") int bookId) {
         bookService.setStudentForBook(studentId, bookId);
     }

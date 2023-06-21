@@ -10,6 +10,7 @@ import ru.astondev.servletjdbcapp.service.impl.TeacherServiceImpl;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.ext.Provider;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public class TeacherResource {
 
     @DELETE
     @Path("/{id}")
-    public void deleteById(@PathParam("id") int id) {
+    public void deleteById(@PathParam("id") int id) throws SQLException {
         teacherService.deleteById(id);
     }
 
