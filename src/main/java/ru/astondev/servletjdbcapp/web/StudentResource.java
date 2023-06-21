@@ -10,6 +10,7 @@ import ru.astondev.servletjdbcapp.service.impl.StudentServiceImpl;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.ext.Provider;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,15 +56,13 @@ public class StudentResource {
 
     @DELETE
     @Path("/{id}")
-    @Produces("application/json")
-    public void deleteById(@PathParam("id") int id) {
+    public void deleteById(@PathParam("id") int id) throws SQLException {
         studentService.deleteById(id);
     }
 
     @PUT
-    @Path("/untie/{id}")
-    @Consumes("application/json")
-    public void untieStudentFromTeacher(@PathParam("id") int id) {
-        studentService.untieStudentFromTeacher(id);
+    @Path("/untie/{studentId}/{teacherId}")
+    public void untieStudentFromTeacher(@PathParam("studentId") int studentId, @PathParam("teacherId") int teacherId) {
+        studentService.untieStudentFromTeacher(studentId, teacherId);
     }
 }

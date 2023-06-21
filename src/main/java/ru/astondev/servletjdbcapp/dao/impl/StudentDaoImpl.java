@@ -98,21 +98,36 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public void deleteById(int id) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(StudentSqlQueries.DELETE_STUDENT_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new StudentDeletingException();
+    public void deleteById(int id) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement untieTeachers = connection.prepareStatement(StudentSqlQueries.UNTIE_TEACHERS_FROM_STUDENT);
+            untieTeachers.setInt(1, id);
+            untieTeachers.executeUpdate();
+            PreparedStatement deleteStudent = connection.prepareStatement(StudentSqlQueries.DELETE_STUDENT_BY_ID);
+            deleteStudent.setInt(1, id);
+            deleteStudent.executeUpdate();
+            connection.commit();
+
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    throw new StudentDeletingException();
+                }
+            }
         }
     }
 
     @Override
-    public void untieStudentFromTeacher(int studentId) {
+    public void untieStudentFromTeacher(int studentId, int teacherId) {
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(StudentSqlQueries.SET_STUDENT_FOR_TEACHER_TO_NULL)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(StudentSqlQueries.UNTIE_STUDENT_FROM_TEACHER)) {
             preparedStatement.setInt(1, studentId);
+            preparedStatement.setInt(2, teacherId);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new SqlProcessingException(e);

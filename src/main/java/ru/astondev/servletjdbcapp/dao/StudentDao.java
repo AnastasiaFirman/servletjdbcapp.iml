@@ -2,6 +2,7 @@ package ru.astondev.servletjdbcapp.dao;
 
 import ru.astondev.servletjdbcapp.model.Student;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +15,9 @@ public interface StudentDao {
 
     Student update(int id, Student student);
 
-    void deleteById(int id);
+    void deleteById(int id) throws SQLException;
 
-    void untieStudentFromTeacher(int studentId);
+    void untieStudentFromTeacher(int studentId, int teacherId);
 
     void deleteAll();
 }

@@ -11,6 +11,7 @@ import ru.astondev.servletjdbcapp.model.Student;
 import ru.astondev.servletjdbcapp.model.Teacher;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class StudentDaoTest {
     }
 
     @Test
-    void deleteByIdTest() {
+    void deleteByIdTest() throws SQLException {
         Student savedStudent = studentDao.save(new Student("Вася", "Пупкин"));
         studentDao.deleteById(savedStudent.getId());
         Assertions.assertEquals(0, studentDao.findAll().size());
@@ -98,7 +99,7 @@ public class StudentDaoTest {
         students.add(savedStudent);
         savedTeacher.setStudents(students);
         teacherDao.save(savedTeacher);
-        studentDao.untieStudentFromTeacher(savedStudent.getId());
+        studentDao.untieStudentFromTeacher(savedStudent.getId(), savedTeacher.getId());
         savedTeacher = teacherDao.findById(savedTeacher.getId()).get();
         Assertions.assertEquals(0, savedTeacher.getStudents().size());
     }

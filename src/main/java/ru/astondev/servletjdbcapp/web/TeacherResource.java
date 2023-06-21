@@ -1,6 +1,5 @@
 package ru.astondev.servletjdbcapp.web;
 
-import ru.astondev.servletjdbcapp.dto.ShortStudentDto;
 import ru.astondev.servletjdbcapp.dto.ShortTeacherDto;
 import ru.astondev.servletjdbcapp.dto.TeacherDto;
 import ru.astondev.servletjdbcapp.mappers.TeacherMapper;
@@ -60,7 +59,6 @@ public class TeacherResource {
 
     @DELETE
     @Path("/{id}")
-    @Produces("application/json")
     public void deleteById(@PathParam("id") int id) {
         teacherService.deleteById(id);
     }

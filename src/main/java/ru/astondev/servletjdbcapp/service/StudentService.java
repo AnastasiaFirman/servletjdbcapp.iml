@@ -2,6 +2,7 @@ package ru.astondev.servletjdbcapp.service;
 
 import ru.astondev.servletjdbcapp.model.Student;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentService {
@@ -9,7 +10,7 @@ public interface StudentService {
     Student findById (int id);
     List<Student> findAll();
     Student update(int id, Student student);
-    void deleteById(int id);
-    void untieStudentFromTeacher(int studentId);
+    void deleteById(int id) throws SQLException;
+    void untieStudentFromTeacher(int studentId, int teacherId);
     void deleteAll();
 }

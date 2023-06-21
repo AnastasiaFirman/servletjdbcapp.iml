@@ -46,7 +46,6 @@ public class BookResource {
 
     @PUT
     @Path("/untie/{id}")
-    @Consumes("application/json")
     public void untieBookFromStudent(@PathParam("id") int id) {
         bookService.untieBookFromStudent(id);
     }
@@ -67,7 +66,6 @@ public class BookResource {
 
     @DELETE
     @Path("/{id}")
-    @Produces("application/json")
     public void deleteById(@PathParam("id") int id) {
         bookService.deleteById(id);
     }

@@ -13,6 +13,7 @@ import ru.astondev.servletjdbcapp.service.impl.StudentServiceImpl;
 import ru.astondev.servletjdbcapp.service.impl.TeacherServiceImpl;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    void deleteByIdTest() {
+    void deleteByIdTest() throws SQLException {
         Student savedStudent = studentService.save(new Student("Вася", "Пупкин"));
         studentService.deleteById(savedStudent.getId());
         Assertions.assertEquals(0, studentService.findAll().size());
@@ -99,7 +100,7 @@ public class StudentServiceTest {
         students.add(savedStudent);
         savedTeacher.setStudents(students);
         teacherService.save(savedTeacher);
-        studentService.untieStudentFromTeacher(savedStudent.getId());
+        studentService.untieStudentFromTeacher(savedStudent.getId(), savedTeacher.getId());
         savedTeacher = teacherService.findById(savedTeacher.getId());
         Assertions.assertEquals(0, savedTeacher.getStudents().size());
     }
