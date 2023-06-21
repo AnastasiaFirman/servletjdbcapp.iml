@@ -38,7 +38,7 @@ public class TeacherResource {
     }
 
     @PUT
-    @Path("/{teacherId}/{studentId}")
+    @Path("/teacher/{teacherId}/student/{studentId}")
     @Consumes("application/json")
     public void setStudentForTeacher (@PathParam("teacherId")int teacherId, @PathParam("studentId") int studentId) {
         teacherService.setStudentForTeacher(teacherId, studentId);

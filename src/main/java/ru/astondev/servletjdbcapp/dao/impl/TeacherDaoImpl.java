@@ -91,7 +91,7 @@ public class TeacherDaoImpl implements TeacherDao {
             preparedStatement.setString(2, teacher.getLastName());
             preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
-
+            teacher.setId(id);
         } catch (SQLException e) {
             throw new SqlProcessingException(e);
         }

@@ -61,7 +61,7 @@ public class StudentResource {
     }
 
     @PUT
-    @Path("/untie/{studentId}/{teacherId}")
+    @Path("/untie/student/{studentId}/teacher/{teacherId}")
     public void untieStudentFromTeacher(@PathParam("studentId") int studentId, @PathParam("teacherId") int teacherId) {
         studentService.untieStudentFromTeacher(studentId, teacherId);
     }

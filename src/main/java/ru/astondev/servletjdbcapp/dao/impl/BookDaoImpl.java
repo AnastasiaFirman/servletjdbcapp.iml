@@ -3,7 +3,6 @@ package ru.astondev.servletjdbcapp.dao.impl;
 import ru.astondev.servletjdbcapp.dao.BookDao;
 import ru.astondev.servletjdbcapp.dbutils.BookSqlQueries;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
-import ru.astondev.servletjdbcapp.exception.BookNotFoundException;
 import ru.astondev.servletjdbcapp.exception.SqlProcessingException;
 import ru.astondev.servletjdbcapp.model.Book;
 
@@ -95,6 +94,7 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
+            book.setId(id);
         } catch (SQLException e) {
             throw new SqlProcessingException(e);
         }

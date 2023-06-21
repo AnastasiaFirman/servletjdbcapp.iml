@@ -38,7 +38,7 @@ public class BookResource {
     }
 
     @PUT
-    @Path("/{studentId}/{bookId}")
+    @Path("/student/{studentId}/book/{bookId}")
     public void setStudentForBook(@PathParam("studentId") int studentId, @PathParam("bookId") int bookId) {
         bookService.setStudentForBook(studentId, bookId);
     }

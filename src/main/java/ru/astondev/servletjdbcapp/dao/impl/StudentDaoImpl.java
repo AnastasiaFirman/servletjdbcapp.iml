@@ -91,6 +91,7 @@ public class StudentDaoImpl implements StudentDao {
             preparedStatement.setString(2, student.getLastName());
             preparedStatement.setInt(3, id);
             preparedStatement.executeUpdate();
+            student.setId(id);
         } catch (SQLException e) {
             throw new SqlProcessingException(e);
         }
