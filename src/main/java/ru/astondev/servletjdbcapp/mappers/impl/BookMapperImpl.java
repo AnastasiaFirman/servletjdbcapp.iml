@@ -1,9 +1,10 @@
-package ru.astondev.servletjdbcapp.mappers;
+package ru.astondev.servletjdbcapp.mappers.impl;
 
 import ru.astondev.servletjdbcapp.dto.BookDto;
+import ru.astondev.servletjdbcapp.mappers.BookMapper;
 import ru.astondev.servletjdbcapp.model.Book;
 
-public class BookMapperImpl implements BookMapper{
+public class BookMapperImpl implements BookMapper {
 
     @Override
     public BookDto toBookDto(Book book) {

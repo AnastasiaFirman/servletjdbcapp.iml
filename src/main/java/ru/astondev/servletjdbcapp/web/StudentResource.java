@@ -66,5 +66,4 @@ public class StudentResource {
     public void untieStudentFromTeacher(@PathParam("id") int id) {
         studentService.untieStudentFromTeacher(id);
     }
-
 }

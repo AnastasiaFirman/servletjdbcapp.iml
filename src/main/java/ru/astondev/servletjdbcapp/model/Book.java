@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
+@EqualsAndHashCode
 public class Book {
     private int id;
     private String title;

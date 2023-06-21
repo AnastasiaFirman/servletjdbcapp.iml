@@ -1,10 +1,10 @@
-package ru.astondev.servletjdbcapp;
+package ru.astondev.servletjdbcapp.daotests;
 
 import org.junit.jupiter.api.*;
 import ru.astondev.servletjdbcapp.dao.StudentDao;
-import ru.astondev.servletjdbcapp.dao.StudentDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.StudentDaoImpl;
 import ru.astondev.servletjdbcapp.dao.TeacherDao;
-import ru.astondev.servletjdbcapp.dao.TeacherDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.TeacherDaoImpl;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
 import ru.astondev.servletjdbcapp.model.Student;
 import ru.astondev.servletjdbcapp.model.Teacher;
@@ -17,7 +17,6 @@ import java.util.List;
 public class TeacherDaoTest {
     private final TeacherDao teacherDao;
     private final StudentDao studentDao;
-
     private final DataSource dataSource = DatasourceConnector.getDataSource();
 
     public TeacherDaoTest() throws ClassNotFoundException {
@@ -40,8 +39,7 @@ public class TeacherDaoTest {
     void saveTest() {
         Teacher teacher = new Teacher("Вася", "Пупкин");
         Teacher savedTeacher = teacherDao.save(teacher);
-        Assertions.assertEquals(teacher.getFirstName(), savedTeacher.getFirstName());
-        Assertions.assertEquals(teacher.getLastName(), savedTeacher.getLastName());
+        Assertions.assertEquals(teacher, savedTeacher);
     }
 
     @Test
@@ -60,9 +58,7 @@ public class TeacherDaoTest {
         Assertions.assertEquals(savedTeacher.getLastName(), foundTeacher.getLastName());
         Assertions.assertEquals(1, students.size());
         Student foundStudent = students.get(0);
-        Assertions.assertEquals(savedStudent.getId(), foundStudent.getId());
-        Assertions.assertEquals(savedStudent.getFirstName(), foundStudent.getFirstName());
-        Assertions.assertEquals(savedStudent.getLastName(), foundStudent.getLastName());
+        Assertions.assertEquals(savedStudent, foundStudent);
     }
 
     @Test
@@ -77,9 +73,7 @@ public class TeacherDaoTest {
         Teacher savedTeacher = teacherDao.save(new Teacher("Вася", "Пупкин"));
         Teacher expectedTeacher = new Teacher(savedTeacher.getId(), "Василий", "Пупкин");
         Teacher updatedTeacher = teacherDao.update(savedTeacher.getId(), expectedTeacher);
-        Assertions.assertEquals(expectedTeacher.getId(), updatedTeacher.getId());
-        Assertions.assertEquals(expectedTeacher.getFirstName(), updatedTeacher.getFirstName());
-        Assertions.assertEquals(expectedTeacher.getLastName(), updatedTeacher.getLastName());
+        Assertions.assertEquals(expectedTeacher, updatedTeacher);
     }
 
     @Test

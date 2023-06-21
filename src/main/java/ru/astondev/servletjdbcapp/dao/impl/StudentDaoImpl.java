@@ -1,5 +1,6 @@
-package ru.astondev.servletjdbcapp.dao;
+package ru.astondev.servletjdbcapp.dao.impl;
 
+import ru.astondev.servletjdbcapp.dao.StudentDao;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
 import ru.astondev.servletjdbcapp.dbutils.StudentSqlQueries;
 import ru.astondev.servletjdbcapp.exception.SqlProcessingException;
@@ -121,7 +122,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public void deleteAll() {
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(StudentSqlQueries.DELETE_ALL)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(StudentSqlQueries.DELETE_ALL)) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new SqlProcessingException(e);
@@ -143,5 +144,4 @@ public class StudentDaoImpl implements StudentDao {
         book.setAuthor(resultSet.getString("author"));
         return book;
     }
-
 }

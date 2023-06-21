@@ -1,8 +1,9 @@
-package ru.astondev.servletjdbcapp.mappers;
+package ru.astondev.servletjdbcapp.mappers.impl;
 
 import ru.astondev.servletjdbcapp.dto.ShortStudentDto;
 import ru.astondev.servletjdbcapp.dto.ShortTeacherDto;
 import ru.astondev.servletjdbcapp.dto.TeacherDto;
+import ru.astondev.servletjdbcapp.mappers.TeacherMapper;
 import ru.astondev.servletjdbcapp.model.Student;
 import ru.astondev.servletjdbcapp.model.Teacher;
 

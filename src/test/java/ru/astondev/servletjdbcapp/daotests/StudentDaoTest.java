@@ -1,7 +1,10 @@
-package ru.astondev.servletjdbcapp;
+package ru.astondev.servletjdbcapp.daotests;
 
 import org.junit.jupiter.api.*;
 import ru.astondev.servletjdbcapp.dao.*;
+import ru.astondev.servletjdbcapp.dao.impl.BookDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.StudentDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.TeacherDaoImpl;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
 import ru.astondev.servletjdbcapp.model.Book;
 import ru.astondev.servletjdbcapp.model.Student;
@@ -17,7 +20,6 @@ public class StudentDaoTest {
     private final BookDao bookDao;
     private final TeacherDao teacherDao;
     private final DataSource dataSource = DatasourceConnector.getDataSource();
-
     public StudentDaoTest() throws ClassNotFoundException {
         bookDao = new BookDaoImpl();
         studentDao = new StudentDaoImpl();

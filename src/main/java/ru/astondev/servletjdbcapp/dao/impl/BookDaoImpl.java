@@ -1,5 +1,6 @@
-package ru.astondev.servletjdbcapp.dao;
+package ru.astondev.servletjdbcapp.dao.impl;
 
+import ru.astondev.servletjdbcapp.dao.BookDao;
 import ru.astondev.servletjdbcapp.dbutils.BookSqlQueries;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
 import ru.astondev.servletjdbcapp.exception.BookNotFoundException;

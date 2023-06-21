@@ -1,7 +1,7 @@
 package ru.astondev.servletjdbcapp.service.impl;
 
 import ru.astondev.servletjdbcapp.dao.StudentDao;
-import ru.astondev.servletjdbcapp.dao.StudentDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.StudentDaoImpl;
 import ru.astondev.servletjdbcapp.exception.StudentNotFoundException;
 import ru.astondev.servletjdbcapp.model.Student;
 import ru.astondev.servletjdbcapp.service.StudentService;

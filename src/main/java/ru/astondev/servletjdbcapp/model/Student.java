@@ -3,6 +3,7 @@ package ru.astondev.servletjdbcapp.model;
 import lombok.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -10,9 +11,11 @@ import java.util.List;
 @Setter
 @ToString
 @Builder
+@EqualsAndHashCode
 public class Student {
     private int id;
     private String firstName;
+
     private String lastName;
     private List<Book> books;
     private List<Teacher> teachers;

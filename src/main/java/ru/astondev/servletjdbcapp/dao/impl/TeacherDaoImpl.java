@@ -1,9 +1,10 @@
-package ru.astondev.servletjdbcapp.dao;
+package ru.astondev.servletjdbcapp.dao.impl;
 
+import ru.astondev.servletjdbcapp.dao.TeacherDao;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
-import ru.astondev.servletjdbcapp.dbutils.StudentSqlQueries;
 import ru.astondev.servletjdbcapp.dbutils.TeacherSqlQueries;
 import ru.astondev.servletjdbcapp.exception.SqlProcessingException;
+import ru.astondev.servletjdbcapp.exception.TeacherDeletingException;
 import ru.astondev.servletjdbcapp.model.Student;
 import ru.astondev.servletjdbcapp.model.Teacher;
 
@@ -14,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class TeacherDaoImpl implements TeacherDao {
-
     private final DataSource dataSource = DatasourceConnector.getDataSource();
 
     public TeacherDaoImpl() throws ClassNotFoundException {
@@ -106,7 +106,7 @@ public class TeacherDaoImpl implements TeacherDao {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new SqlProcessingException(e);
+            throw new TeacherDeletingException();
         }
     }
 

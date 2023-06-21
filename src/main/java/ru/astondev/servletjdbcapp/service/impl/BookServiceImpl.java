@@ -1,7 +1,7 @@
 package ru.astondev.servletjdbcapp.service.impl;
 
 import ru.astondev.servletjdbcapp.dao.BookDao;
-import ru.astondev.servletjdbcapp.dao.BookDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.BookDaoImpl;
 import ru.astondev.servletjdbcapp.exception.BookNotFoundException;
 import ru.astondev.servletjdbcapp.model.Book;
 import ru.astondev.servletjdbcapp.service.BookService;

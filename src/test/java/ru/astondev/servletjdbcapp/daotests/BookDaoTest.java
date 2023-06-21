@@ -1,10 +1,10 @@
-package ru.astondev.servletjdbcapp;
+package ru.astondev.servletjdbcapp.daotests;
 
 import org.junit.jupiter.api.*;
 import ru.astondev.servletjdbcapp.dao.BookDao;
-import ru.astondev.servletjdbcapp.dao.BookDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.BookDaoImpl;
 import ru.astondev.servletjdbcapp.dao.StudentDao;
-import ru.astondev.servletjdbcapp.dao.StudentDaoImpl;
+import ru.astondev.servletjdbcapp.dao.impl.StudentDaoImpl;
 import ru.astondev.servletjdbcapp.dbutils.DatasourceConnector;
 import ru.astondev.servletjdbcapp.model.Book;
 import ru.astondev.servletjdbcapp.model.Student;
@@ -39,8 +39,7 @@ public class BookDaoTest {
     void saveTest() {
         Book book = new Book("Каникулы в Простоквашино", "Эдуард Успенский");
         Book savedBook = bookDao.save(book);
-        Assertions.assertEquals(book.getTitle(), savedBook.getTitle());
-        Assertions.assertEquals(book.getAuthor(), savedBook.getAuthor());
+        Assertions.assertEquals(book, savedBook);
     }
 
     @Test
@@ -70,9 +69,7 @@ public class BookDaoTest {
         Book book = bookDao.save(new Book("Каникулы в Простоквашино", "Эдуард Успенский"));
         Book expectedBook = new Book(book.getId(), "Зима в Простоквашино", "Эдуард Успенский");
         Book updatedBook = bookDao.update(book.getId(), expectedBook);
-        Assertions.assertEquals(expectedBook.getId(), updatedBook.getId());
-        Assertions.assertEquals(expectedBook.getTitle(), updatedBook.getTitle());
-        Assertions.assertEquals(expectedBook.getAuthor(), updatedBook.getAuthor());
+        Assertions.assertEquals(expectedBook, updatedBook);
     }
 
     @Test
