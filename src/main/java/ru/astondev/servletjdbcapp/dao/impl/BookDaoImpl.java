@@ -120,7 +120,7 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setInt(1, bookId);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
-            throw new BookNotFoundException();
+            throw new SqlProcessingException(e);
         }
     }
 

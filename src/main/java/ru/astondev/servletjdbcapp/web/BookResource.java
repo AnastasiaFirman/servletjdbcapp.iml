@@ -45,7 +45,7 @@ public class BookResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/untie/{id}")
     @Consumes("application/json")
     public void untieBookFromStudent(@PathParam("id") int id) {
         bookService.untieBookFromStudent(id);
